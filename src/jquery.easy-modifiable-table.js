@@ -23,7 +23,7 @@
 		$input = $('<input type="checkbox"/>');
 	
 	$.fn.easyModifiableTable = function(){
-		
+	
 		var $tables = $(this);
 		
 		$tables.each(function(){
@@ -67,7 +67,10 @@
 					var $input = $(this),
 						value = $input.val(),
 						checked = $input.is(':checked'),
-						$header = $table.find('th:contains(' + value + ')'),
+						$header = $table.find('th')
+									.filter(function(){
+										return $(this).text() == value;
+									}),
 						$prev = $header.prevAll(),
 						columns = [],
 						column = $header.index(),
